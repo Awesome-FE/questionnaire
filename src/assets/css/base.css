@@ -1,0 +1,590 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.w {
+    width: 1080px;
+    margin: 0 auto;
+}
+
+html {
+    font-size: 14px;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+*::selection {
+    background-color: limegreen;
+    color: #fff;
+}
+
+*::-moz-selection {
+    background-color: limegreen;
+    color: #fff;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+img {
+    border: 0;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    color: #333;
+    font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft YaHei", STHeiti, sans-serif !important;
+}
+
+button,
+input[type=button],
+input[type=reset],
+input[type=submit] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+
+input:not([type=radio]) {
+    -webkit-appearance: none !important;
+    border-radius: 0;
+    outline: none;
+}
+
+button,
+a {
+    outline: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clearfix::before,
+.clearfix::after {
+    display: block;
+    content: "";
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+/*input placeholder 的颜色控制*/
+
+::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #c9c9c9;
+    font-weight: normal !important;
+}
+
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #c9c9c9;
+    font-weight: normal !important;
+}
+
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #c9c9c9;
+    font-weight: normal !important;
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #c9c9c9;
+    font-weight: normal !important;
+}
+
+.color_six {
+    color: #666666 !important;
+}
+
+.color_nine {
+    color: #999999 !important;
+}
+
+.none {
+    display: none;
+}
+
+.red {
+    color: #f02345 !important;
+}
+
+
+/* 头部导航栏  start */
+
+.nav {
+    height: 64px;
+    line-height: 64px;
+    background-color: #fff;
+    box-shadow: 0px 2px 6px #f4f4f4;
+}
+
+.nav .fl a {
+    display: block;
+    background: url("../images/logo.png");
+    background-size: 134px 42px;
+    width: 134px;
+    height: 42px;
+    margin-top: 11px;
+}
+
+.nav .fr li {
+    float: left;
+}
+
+.nav li a.br {
+    border-right: 1px solid #dfdfdf;
+}
+
+.nav li a {
+    font-size: 14px;
+    color: #333;
+    padding: 0 40px;
+}
+
+.nav li .header_login {
+    padding-right: 10px;
+}
+
+.nav li .header_register {
+    padding-left: 10px;
+    color: #fa0000;
+}
+
+.nav li:last-child a {
+    padding-right: 0px;
+}
+
+.nav li:hover a {
+    color: #fa0000;
+}
+
+
+/* 头部导航栏  end */
+
+
+/* 底部  start */
+
+.footer_sm {
+    display: none;
+}
+
+.footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e8e8e8;
+}
+
+.footer_top {
+    padding: 40px 0 20px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.footer_top li {
+    float: left;
+    margin-right: 200px;
+}
+
+.footer_top li:last-child {
+    margin-right: 0;
+}
+
+.footer_top .serve_phone {
+    font-size: 28px;
+    color: #2f5597;
+    margin-bottom: 6px;
+}
+
+.footer_top .describe {
+    font-size: 14px;
+    color: #2f5597;
+    margin-bottom: 20px;
+}
+
+.footer_top .language_change select {
+    display: block;
+    width: 180px;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 12px;
+    outline: none;
+}
+
+.footer_top .language_change select option {
+    background-color: transparent !important;
+    color: #2f5597 !important;
+}
+
+.footer_top .name {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.footer_top .second_title {
+    margin-bottom: 15px;
+}
+
+.footer_top .second_title a {
+    display: block;
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.footer_top .QR_code img {
+    width: 84px;
+    height: 84px;
+}
+
+.footer_bottom {
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+.footer_bottom li {
+    float: left;
+}
+
+.footer_bottom .company {
+    background: url("../images/footer_logo.png");
+    background-size: 136px 38px;
+    width: 136px;
+    height: 38px;
+    margin-right: 25px;
+}
+
+.footer_bottom .icp_records {
+    font-size: 12px;
+    color: #333333;
+    margin-right: 202px;
+}
+
+.footer_bottom img {
+    display: block;
+    width: 102px;
+    height: 38px;
+    float: left;
+    margin-left: 10px;
+}
+
+
+/* 底部  end */
+
+.mask {
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(19, 29, 51, .6);
+    /*ie8的半透明效果*/
+    filter: progid: DXImageTransform.Microsoft.gradient(startcolorstr=#7F000000, endcolorstr=#7F000000);
+}
+
+.enter {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 360px;
+    color: #666;
+    border: 1px solid #ccc;
+    border-radius: 5px !important;
+    height: 58px;
+    line-height: 58px;
+    text-indent: 16px;
+}
+
+.zc {
+    position: relative;
+    width: 360px;
+    margin: 0 auto;
+    margin-top: 7%;
+    padding: 40px;
+    color: #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.top {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.btn_register {
+    display: block;
+    font-size: 18px;
+    width: 100%;
+    height: 48px;
+    margin: 12px 0;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #c00000;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    /* Opera */
+}
+
+.btn_register:hover {
+    opacity: 0.8;
+}
+
+.login {
+    border-top: 1px solid #ccc;
+}
+
+.has_account {
+    font-size: 16px;
+    display: block;
+    margin-top: 30px;
+    color: #999;
+    float: left;
+}
+
+
+/*登录按钮 */
+
+.dl {
+    font-size: 14px;
+    float: right;
+    margin-top: 30px;
+    cursor: pointer;
+    color: #c00000;
+}
+
+.phone {
+    background: url(../images/phone.png) 325px 18px no-repeat;
+}
+
+.lock {
+    background: url(../images/lock.png) 325px 18px no-repeat;
+}
+
+
+/*登录页样式*/
+
+.dl_login {
+    position: relative;
+    width: 360px;
+    margin: 0 auto;
+    margin-top: 7%;
+    padding: 40px;
+    color: #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.dl_login .line_left {
+    float: left;
+    width: 130px;
+    border-top: 1px solid #cccccc;
+    margin-top: 11px;
+}
+
+.dl_login .forget_password {
+    float: left;
+    font-size: 16px;
+    color: #666666;
+    margin-left: 12px;
+}
+
+.dl_login .line_right {
+    float: right;
+    width: 130px;
+    border-top: 1px solid #cccccc;
+    margin-top: 11px;
+}
+
+.dl_login .change_wechat {
+    float: left;
+    display: block;
+    font-size: 16px;
+    height: 24px;
+    line-height: 24px;
+    padding-left: 33px;
+    background: url("../images/change_wechat.png") left center no-repeat;
+    background-size: 28px 24px;
+    margin-top: 20px;
+}
+
+.dl_login .login {
+    border: none;
+}
+
+.dl_login .verification_code {
+    height: 58px;
+    line-height: 58px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.dl_login .verification_code input {
+    float: left;
+    height: 58px;
+    line-height: 58px;
+    border: none;
+    text-indent: 16px;
+    font-size: 16px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.dl_login .verification_code img {
+    float: right;
+    height: 58px;
+    width: 120px;
+    border: none;
+    border-left: 1px solid #cccccc;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.mask .checkbox {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    display: block;
+    float: left;
+}
+
+.mask .auto_login {
+    font-size: 13px;
+    margin-top: -3px;
+    margin-left: 8px;
+    float: left;
+}
+
+.top_dl {
+    margin-bottom: 15px;
+}
+
+.change_login_phone,
+.email_forget,
+.change_login_email,
+.phone_forget {
+    color: #c00000;
+}
+
+.btn_login {
+    display: block;
+    font-size: 18px;
+    width: 100%;
+    height: 48px;
+    margin: 12px 0 20px;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    background-color: #c00000;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    /* Opera */
+}
+
+.btn_login:hover {
+    opacity: 0.8;
+}
+
+.no_account {
+    float: left;
+    font-size: 16px;
+    display: inline-block;
+    margin-top: 18px;
+    color: #999;
+}
+
+#register_phone,
+#register_email {
+    font-size: 14px;
+    float: right;
+    margin-top: 20px;
+    color: #c00000;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+}
+
+
+/*验证码*/
+
+.PIN {
+    height: 46px;
+    padding: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 5px !important;
+    margin-bottom: 10px;
+}
+
+.PIN .msg_code {
+    float: left;
+    font-size: 16px;
+    width: 210px;
+    height: 46px;
+    line-height: 46px;
+    border: none;
+    text-indent: 10px;
+    color: #666666;
+}
+
+.PIN .send_msg {
+    float: right;
+    font-size: 16px;
+    width: 130px;
+    height: 46px;
+    line-height: 46px;
+    text-align: center;
+    background-color: #c00000;
+    color: #fff;
+    border: none;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    cursor: pointer;
+}
+
+
+/*登录失败提示*/
+
+.login_fail {
+    background: url("../images/login_fail.png") 0px 3px no-repeat;
+    font-size: 16px;
+    padding-left: 22px;
+    margin-bottom: 15px;
+    color: red;
+}

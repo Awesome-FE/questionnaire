@@ -1,0 +1,55 @@
+{
+  "name": "raas",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "fengqijie <fengqijie@urplus.cn>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --content-base ./ --open --inline --hot --compress --config webpack.dev.js",
+    "build": "webpack --progress --hide-modules --config webpack.prod.js"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.1.0",
+    "jquery": "^3.2.1",
+    "jquery.pagination": "^0.1.5",
+    "jquery.qrcode": "^1.0.3",
+    "js-cookie": "^2.2.0",
+    "moment": "^2.20.1",
+    "pagination": "^0.4.4",
+    "qrcode": "^1.2.0",
+    "store": "^2.0.12",
+    "swiper": "^4.2.0",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "vue": "^2.5.11",
+    "vue-baidu-map": "^0.20.7",
+    "vue-router": "^3.0.1",
+    "vue-wechat-title": "^2.0.4",
+    "vuejs-datepicker": "^0.9.25",
+    "vuejs-paginator": "^2.0.2"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1",
+    "webpack-merge": "^4.1.2"
+  }
+}
