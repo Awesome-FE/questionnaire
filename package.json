@@ -6,7 +6,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --content-base ./ --open --inline --hot --compress --config webpack.dev.js",
+    "dev": "webpack-dev-server --host 0.0.0.0 --content-base ./ --open --inline --hot --compress --config webpack.dev.js",
     "build": "webpack --progress --hide-modules --config webpack.prod.js"
   },
   "dependencies": {
