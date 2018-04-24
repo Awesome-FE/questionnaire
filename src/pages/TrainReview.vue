@@ -1,74 +1,87 @@
 <template>
   <div class="home-container">
-    <div class="fast-entry">
-      <h3>快速考试入口</h3>
-      <p>通过已有的准考证快速参加考试，具体的准考信息请咨询相关人事。</p>
-      <!-- <router-link :to="{path: '/resourceList'}">快速考试</router-link> -->
-      <XButton type="primary" text="xxx"></XButton>
-    </div>
-    <div class="ad-message">
-      <h3 @click="click" >活动信息</h3>
-      <h1>{{ id }}</h1>
-      <p>好消息好消息好消息好消息好消息好消息好消息好消息好消息好消息</p>
+    <x-header>培训心得</x-header>
+    <group class="user-info">
+      <x-input title="姓名：" v-model="data.name"></x-input>
+      <x-input title="单位：" v-model="data.personaldepartment"></x-input>
+      <x-input title="岗位：" v-model="data.post"></x-input>
+      <x-input title="培训名称：" v-model="data.grade"></x-input>
+      <x-input title="培训时间：" v-model="data.time"></x-input>
+    </group>
+
+    <group title="心得">
+      <x-textarea v-model="data.learnexperience"></x-textarea>
+    </group>
+    <toast v-model="showPositionValue" type="text" :time="1500" is-show-mask text="请填写完成后保存" width="15em" position="top"></toast>
+    <div class="btn-group">
+      <XButton class="btn" text="保存" type="primary" @click.native="save"></XButton>
+      <XButton class="btn" text="返回" type="primary"></XButton>
     </div>
   </div>
 </template>
 
 <script>
-import Vue from "vue";
 import axios from "axios";
 
-import { XButton } from "vux";
+import { XButton, Toast, Datetime, XInput, Group, XTextarea, XHeader  } from "vux";
 export default {
   data() {
-    return {};
+    return {
+      showPositionValue: false,
+      data: {
+        name: '',  //名称
+        time: '',  //培训时间
+        personalname: '',  //个人名字
+        personaldepartment: '',  //单位名称
+        post: '',  //岗位
+        learnexperience: '',  //学习心得体会
+        createTime: '',  //创建时间
+      }
+		}
   },
   components: {
-    XButton
+		Group,
+    XButton,
+    Toast,
+    Datetime,
+    XInput,
+    XTextarea,
+    XHeader 
   },
   methods: {
-    click() {
-      console.log(this.$route.query);
+    save () {
+      const { data } = this;
+      const values = Object.values(data);
+      const emptyValues = values.filter(v => !v);
+      if (emptyValues.length) {
+        this.showPositionValue = true;
+        return;
+      }
+      this._sendData(data);
     },
-    login() {
-      const vm = this;
-      const { username, password } = vm;
-      axios
-        .post("/login", {
-          username,
-          password
-          // userName: username,
-          // pwd: password
-        })
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+    _sendData (data) {
+      axios({
+        url: '/question/experience/save',
+        data: data,
+        success: this._successHandler,
+        error: this._errHandler
+      })
+    },
+    _successHandler (resp) {
+
+    },
+    _errHandler (err) {
+
     }
   },
-  computed: {
-    id() {
-      return this.$route.params.id;
-    }
-  }
 };
 </script>
 <style>
-h3 {
-  text-align: center;
-  margin-bottom: 10px;
+.key-value-table .key {
+	width: 50%;
 }
-.home-container {
-  padding: 40px;
-}
-.ad-message,
-.fast-entry {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-.fast-entry {
-  margin-bottom: 20px;
+.key-value-table input {
+  height: 30px;
+  margin: 4px 0;
 }
 </style>

@@ -37,7 +37,11 @@ a {
 img {
     border: 0;
 }
-
+h1 {
+    font-weight: 400;
+    text-align: center;
+    margin: 20px 0;
+}
 body,
 button,
 input,
@@ -161,4 +165,29 @@ input:focus {
 
 .red {
     color: #f02345 !important;
+}
+
+
+.key-value-table {
+	width: 100%;
+}
+.key-value-table .key {
+	color: #999;
+	width: 40%;
+	text-align: right;
+	padding: 5px 10px;
+}
+.key-value-table .value {
+	padding-right: 30px;
+}
+.key-value-table input {
+    padding-left: 10px;
+}
+
+.weui-cells__title {
+    margin-top: 3em;
+}
+.btn-group {
+    padding: 10px 20px;
+    margin: 20px 0;
 }

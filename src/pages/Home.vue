@@ -45,15 +45,7 @@ export default {
 </script>
 <style>
 
-.key-value-table {
-	width: 100%;
-}
-.key-value-table .key {
-	color: #999;
-	width: 40%;
-	text-align: right;
-	padding: 5px 10px;
-}
+
 .ready-exam-container .enter-btn {
 	margin-top: 20px;
 	width: 80%;
