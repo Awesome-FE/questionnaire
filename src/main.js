@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
-import jquery from 'jquery'
 import axios from 'axios'
 import './assets/css/base.css'
-import './js/js.cookie.js'
 import router from './router/index.js'
-import util from "./js/util.js";
+import store from './store'
+import 'vue-awesome/icons'
+
+import Icon from 'vue-awesome/components/Icon'
+
+// 全局注册（在 `main .js` 文件中）
+Vue.component('icon', Icon)
 
 axios.defaults.baseURL = '/api';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -18,15 +22,15 @@ axios.defaults['transformRequest'] = [function(data) {
     return ret
 }]
 
-Vue.prototype.$getParameterByName = util.getParameterByName;
 Vue.config.productionTip = false;
+
 
 new Vue({
     el: '#app',
-    router: router,
+    router,
+    store,
     render: h => h(App)
 });
-
 
 // 引入外部js
 Vue.component('remote-script', {

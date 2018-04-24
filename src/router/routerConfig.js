@@ -1,21 +1,48 @@
-import Home from "../components/Home"
-import Login from '../components/Login'
 
-export default [
+import Home from "../pages/Home"
+import TrainReview from "../pages/TrainReview"
+import TrainOpinion from "../pages/TrainOpinion"
+import TrainDemand from "../pages/TrainDemand"
+
+const routers = [
     {
         path: '/home',
         name: 'home',
-        component: Home,
+        components: {
+            default: Home,
+        },
         meta: {
             title: '首页'
         }
     },
     {
-        path: '/user-login',
-        name: 'Login',
-        component: Login,
+        path: '/train-review',
+        name: 'TrainReview',
+        components: {
+            default: TrainReview,
+        },
         meta: {
-            title: '登录'
+            title: '培训心得'
+        }
+    },
+    {
+        path: '/train-opinion',
+        name: 'TrainOpinion',
+        components: {
+            default: TrainOpinion,
+        },
+        meta: {
+            title: '培训项目反映评估及改进书意见'
+        }
+    },
+    {
+        path: '/train-demand',
+        name: 'TrainDemand',
+        components: {
+            default: TrainDemand,
+        },
+        meta: {
+            title: '培训需求调研表'
         }
     },
     {
@@ -23,3 +50,8 @@ export default [
         redirect: '/home'
     }
 ];
+
+
+export default [
+    ...routers
+]
