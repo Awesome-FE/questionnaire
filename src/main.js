@@ -3,7 +3,6 @@ import App from './App.vue'
 import axios from 'axios'
 import './assets/css/base.css'
 import router from './router/index.js'
-import store from './store'
 import 'vue-awesome/icons'
 
 import Icon from 'vue-awesome/components/Icon'
