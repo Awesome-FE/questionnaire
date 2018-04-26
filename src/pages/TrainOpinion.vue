@@ -22,7 +22,7 @@
 
 			<h4>改进意见：</h4>
 			<group>
-				<x-textarea :max="20" v-model="data.advise" :placeholder="placeholder"></x-textarea>
+				<x-textarea :max="20" v-model="data.advise" :placeholder="placeholder" autosize></x-textarea>
 			</group>
 			<toast v-model="showPositionValue" type="text" :time="1500" is-show-mask text="请填写完整后保存" width="15em" position="top"></toast>
 			<div class="btn-group">

@@ -5,12 +5,14 @@
       <x-input v-for="item in database.userInfo" 
         :title="item.title"  
         :key="item.title"
+				:mask="item.mask || ''"
         v-model="item.model"
+				required
       ></x-input>
     </group>
 
     <group  v-for="item in database.textArea" :key="item.title" :title="item.title">
-      <x-textarea v-model="item.model"></x-textarea>
+      <x-textarea v-model="item.model" autosize></x-textarea>
     </group>
 
     <toast v-model="showPositionValue" type="text" :time="1500" is-show-mask text="请填写完成后保存" width="15em" position="top"></toast>
@@ -33,7 +35,7 @@ export default {
       database: {
         userInfo: [
           { model: '', title: "姓名：",  name: "name" },
-          { model: '', title: "年龄：",  name: "age" },
+          { model: '', title: "年龄：",  name: "age", mask: "99" },
           { model: '', title: "班组：",  name: "team" },
           { model: '', title: "岗位：",  name: "post" },
           { model: '', title: "学历：",  name: "education" },
