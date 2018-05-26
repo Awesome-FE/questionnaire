@@ -17,15 +17,14 @@
 
     <toast v-model="showPositionValue" type="text" :time="1500" is-show-mask text="请填写完成后保存" width="15em" position="top"></toast>
     <div class="btn-group">
-      <XButton class="btn" text="保存" type="primary" @click.native="save"></XButton>
-      <XButton class="btn" text="返回" type="primary"></XButton>
+      <XButton class="btn" text="下一步" type="primary" @click.native="save"></XButton>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import util from "../js/util";
 import { XButton, Toast, XInput, Group, XTextarea, XHeader } from "vux";
 export default {
   data() {
@@ -64,6 +63,7 @@ export default {
   },
   methods: {
     save () {
+			util.redirectToNextPage(this);
       this._getData()
       const { data } = this;
       const values = Object.values(data);

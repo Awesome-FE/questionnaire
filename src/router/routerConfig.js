@@ -1,5 +1,6 @@
 
 import Home from "../pages/Home"
+import End from "../pages/End"
 import TrainReview from "../pages/TrainReview"
 import TrainOpinion from "../pages/TrainOpinion"
 import TrainDemand from "../pages/TrainDemand"
@@ -13,6 +14,16 @@ const routers = [
         },
         meta: {
             title: '首页'
+        }
+    },
+    {
+        path: '/end',
+        name: 'end',
+        components: {
+            default: End,
+        },
+        meta: {
+            title: '感谢'
         }
     },
     {
