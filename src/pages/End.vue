@@ -2,7 +2,7 @@
   <div class="ready-exam-container">
 		<div class="logoBox"><img class="logo" src="../assets/images/logo.png" alt="logo"></div>
   	<div class="info-box">
-        <h1>问卷调查已经完成</h1><h1>谢谢！</h1>
+        <h1>问卷调查已经完成</h1><h1>感谢参与！</h1>
   	</div>
   </div>
 </template>

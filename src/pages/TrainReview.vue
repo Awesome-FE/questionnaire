@@ -1,12 +1,9 @@
 <template>
   <div class="home-container">
     <x-header>培训心得</x-header>
-    <group class="user-info">
-      <x-input title="姓名：" v-model="data.name"></x-input>
-      <x-input title="单位：" v-model="data.personaldepartment"></x-input>
-      <x-input title="岗位：" v-model="data.post"></x-input>
-      <x-input title="培训名称：" v-model="data.grade"></x-input>
-      <x-input title="培训时间：" v-model="data.time"></x-input>
+
+    <group v-for="(item, index) in database" :key="item.title" class="user-info">
+      <x-input :title="item.title" v-model="item.model"></x-input>
     </group>
 
     <group title="心得">
@@ -28,14 +25,17 @@ export default {
   data() {
     return {
       showPositionValue: false,
+      database: [
+        { model: '', name: 'name',  title: '名称' },
+        { model: '', name: 'time',  title: '培训时间' },
+        { model: '', name: 'personalname',  title: '个人名字' },
+        { model: '', name: 'personaldepartment',  title: '单位名称' },
+        { model: '', name: 'post',  title: '岗位' },
+        { model: '', name: 'learnexperience',  title: '学习心得体会' },
+        { model: '', name: 'createTime',  title: '创建时间' }
+      ],
       data: {
-        name: '',  //名称
-        time: '',  //培训时间
-        personalname: '',  //个人名字
-        personaldepartment: '',  //单位名称
-        post: '',  //岗位
-        learnexperience: '',  //学习心得体会
-        createTime: '',  //创建时间
+        learnexperience: '', // 和学习心得体会重复，需确认！！！！！！！！
       }
 		}
   },
@@ -50,7 +50,8 @@ export default {
   },
   methods: {
     save () {
-			util.redirectToNextPage(this);
+      this._getData();
+      debugger
       const { data } = this;
       const values = Object.values(data);
       const emptyValues = values.filter(v => !v);
@@ -59,6 +60,14 @@ export default {
         return;
       }
       this._sendData(data);
+    },
+    _getData () {
+      const { data, database } = this;
+      console.log('database: ', database)
+      database.forEach((item) => {
+        var obj = {};
+        data[item.name] = item.model;
+      });
     },
     _sendData (data) {
       axios({
@@ -69,7 +78,7 @@ export default {
       })
     },
     _successHandler (resp) {
-
+			util.redirectToNextPage(this);
     },
     _errHandler (err) {
 

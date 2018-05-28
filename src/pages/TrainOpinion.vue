@@ -108,7 +108,6 @@ export default {
   },
   methods: {
     save () {
-			util.redirectToNextPage(this);
 
 			this._getData()
       const { data } = this;
@@ -137,7 +136,7 @@ export default {
       })
     },
     _successHandler (resp) {
-
+			util.redirectToNextPage(this);
     },
     _errHandler (err) {
 
