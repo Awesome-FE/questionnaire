@@ -168,22 +168,6 @@ input:focus {
 }
 
 
-.key-value-table {
-	width: 100%;
-}
-.key-value-table .key {
-	color: #999;
-	width: 40%;
-	text-align: right;
-	padding: 5px 10px;
-}
-.key-value-table .value {
-	padding-right: 30px;
-}
-.key-value-table input {
-    padding-left: 10px;
-}
-
 .weui-cells__title {
     margin-top: 3em;
 }

@@ -9,10 +9,11 @@
 				</tr>
 			</table>
 
-			<div v-for="(item, index) in database" v-if="index > 0" :key="item.title">
-				<h4>{{ item.title }}</h4>
+			<div class="questions-container" v-for="(item, index) in database" v-if="index > 0" :key="item.title + item.teacherName">
+				<h4 v-if="item.teacherName">{{ item.title + '：' + item.teacherName }}</h4>
+				<h4 v-else>{{ item.title }}</h4>
 				<div class="questions-box">
-					<group  v-for="i in item.data" :key="i.title" :title="i.title + '：' +  i.model">
+					<group  v-for="i in item.data" :key="i.title" :title="i.title + '：<i>' +  i.model + '</i>'">
 						<cell primary="content">
 							<range v-model="i.model" :step="i.step"></range>
 						</cell>
@@ -20,10 +21,12 @@
 				</div>
 			</div>
 
-			<h4>改进意见：</h4>
-			<group>
-				<x-textarea :max="20" v-model="data.advise" :placeholder="placeholder" autosize></x-textarea>
-			</group>
+			<div class="questions-container">
+				<h4>改进意见：</h4>
+				<group>
+					<x-textarea v-model="data.advise" :placeholder="placeholder" autosize></x-textarea>
+				</group>
+			</div>
 			<toast v-model="showPositionValue" type="text" :time="1500" is-show-mask text="请填写完整后保存" width="15em" position="top"></toast>
 			<div class="btn-group">
 				<XButton class="btn" text="下一步" type="primary" @click.native="save"></XButton>
@@ -53,15 +56,15 @@ export default {
 			showPositionValue: false,
       data: {
 				advise: '',  //改进意见
-				// activity: 0,  //活动id
-				// activityName: 0,  //活动名称
+				activity: 'xxxx',  //活动id
+				activityName: 'yyyyy',  //活动名称
 			},
 			database: [
 				{ 
 					type: '', 
 					title: '', 
 					data: [  
-						{ model: '', name: 'trainName', title: '培训项目名称' },
+						{ model: '', name: 'trainName', title: '培训名称' },
 						{ model: '', name: 'undertakeDepartment', title: '承办部门' },
 						{ model: '', name: 'projectPerson', title: '项目负责人' },
 						{ model: '', name: 'startTime', title: '办班时间' },
@@ -85,12 +88,13 @@ export default {
 						{ model: 0, step: 10, name: 'bookLevel', title: '教材资料质量' },
 					]
 				}, { 
-					type: 'score', 
-					title: '教师评价', 
+					type: 'teacher', 
+					title: '教师评价',
+					teacherName: '',
 					data: [
-						{ model: 0, step: 10, name: 'testa', title: '专业技术水平' },
-						{ model: 0, step: 10, name: 'testb', title: '授课技巧交流能力' },
-						{ model: 0, step: 10, name: 'testc', title: '敬业及责任心' },
+						{ model: 0, step: 10, name: 'teacherTechnologyLeve', title: '专业技术水平' },
+						{ model: 0, step: 10, name: 'teacherCommunicationLeve', title: '授课技巧交流能力' },
+						{ model: 0, step: 10, name: 'teacherResponsibilityLeve', title: '敬业及责任心' },
 					]
 				},
 			]
@@ -108,10 +112,9 @@ export default {
   },
   methods: {
     save () {
-
 			this._getData()
       const { data } = this;
-      const values = Object.values(data);
+			const values = Object.values(data);
       const emptyValues = values.filter(v => !v);
       if (emptyValues.length) {
         this.showPositionValue = true;
@@ -121,37 +124,107 @@ export default {
     },
 		_getData () {
 			const { data, database } = this;
+			data.sssessmentTeacher = [];
 			database.forEach(item => {
-				item.data.forEach(item2 => {
-					data[item2.name] = item2.model;
-				})
+				if (item.type === "teacher") {
+					const obj = {};
+					Object.assign(obj, {
+						id: item.id,
+						teacherName: item.teacherName,
+					})
+					item.data.forEach(function (item2) {
+						obj[item2.name] = item2.model;
+					})
+					data.sssessmentTeacher.push(obj);
+				} else {
+					item.data.forEach(item2 => {
+						data[item2.name] = item2.model;
+					})
+				}
 			});
 		},
     _sendData (data) {
       axios({
+				method: 'post',
         url: '/question/research/save',
         data: data,
-        success: this._successHandler,
-        error: this._errHandler
-      })
+			})
+			.then(this._successHandler)
+			.catch(this._errHandler)
     },
     _successHandler (resp) {
 			util.redirectToNextPage(this);
     },
     _errHandler (err) {
 
-		}
+		},
   },
+	mounted () {
+		const vm = this;
+		vm.database[0]['data'].forEach(function(item) {
+			item.model = vm.GLOBAL.data[item.name] || '';
+		});
+		console.log(vm.GLOBAL.data)
+
+		axios.get('/question/activity/find' + '?id=18')
+		.then(function (resp) {
+			const database = vm.database
+			const teachers = resp.data.TeacherDO;
+
+			const arr = database.pop()
+			if (arr.type === 'teacher') {
+				teachers.forEach(function (item) {
+					const newArr = JSON.parse(JSON.stringify(arr));
+					Object.assign(newArr, {
+						teacherName: item.name,
+						id: item.id
+					})
+					database.push(newArr);
+				});
+			}
+
+		})
+		.catch(function () {
+
+		})
+	}
 };
 </script>
 <style>
+.key-value-table {
+	margin-top: 20px;
+}
+.questions-container {
+	padding: 10px;
+}
 .questions-box {
   border: 1px solid #d9d9d9;
+}
+.questions-box i {
+  color: #04BE02;
+	font-size: 16px;
 }
 h4 {
   margin: 30px 0 10px;
 }
 .weui-cell {
 	height: 30px;
+}
+.vux-x-textarea {
+	height: 80px;
+	border-left: 1px solid #D9D9D9;
+	border-right: 1px solid #D9D9D9;
+}
+.key-value-table {
+	width: 100%;
+}
+.key {
+	color: #999;
+	width: 40%;
+	text-align: right;
+	padding: 5px 10px;
+}
+.value {
+	padding-right: 30px;
 }
 </style>

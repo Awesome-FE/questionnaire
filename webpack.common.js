@@ -42,8 +42,12 @@ module.exports = {
               "css-loader",
               "sass-loader?indentedSyntax"
             ]
-          }
+          },
           // other vue-loader options go here
+	  cssModules: {
+	  	localIdentName: '[path][name]---[local]---[hash:base64:5]',
+		camelCase: true
+	  }
         }
       },
       {

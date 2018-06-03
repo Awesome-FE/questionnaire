@@ -3,11 +3,11 @@
     <x-header>培训心得</x-header>
 
     <group v-for="(item, index) in database" :key="item.title" class="user-info">
-      <x-input :title="item.title" v-model="item.model"></x-input>
+      <x-input :title="item.title" v-model="item.model" :readonly="item.readonly"></x-input>
     </group>
 
     <group title="心得">
-      <x-textarea v-model="data.learnexperience"></x-textarea>
+      <x-textarea v-model="data.learnexperience"  :placeholder="placeholder" ></x-textarea>
     </group>
     <toast v-model="showPositionValue" type="text" :time="1500" is-show-mask text="请填写完成后保存" width="15em" position="top"></toast>
     <div class="btn-group">
@@ -24,22 +24,22 @@ import { XButton, Toast, Datetime, XInput, Group, XTextarea, XHeader  } from "vu
 export default {
   data() {
     return {
+      placeholder: "随便说点什么吧...",
       showPositionValue: false,
       database: [
-        { model: '', name: 'name',  title: '名称' },
-        { model: '', name: 'time',  title: '培训时间' },
+        { model: '', name: 'name',  title: '名称', readonly: true },
+        { model: '', name: 'time',  title: '培训时间', readonly: true },
         { model: '', name: 'personalname',  title: '个人名字' },
         { model: '', name: 'personaldepartment',  title: '单位名称' },
-        { model: '', name: 'post',  title: '岗位' },
-        { model: '', name: 'learnexperience',  title: '学习心得体会' },
-        { model: '', name: 'createTime',  title: '创建时间' }
+        { model: '', name: 'post',  title: '岗位' }
       ],
       data: {
-        learnexperience: '', // 和学习心得体会重复，需确认！！！！！！！！
+        learnexperience: ''
       }
 		}
   },
   components: {
+    Datetime,
 		Group,
     XButton,
     Toast,
@@ -51,7 +51,6 @@ export default {
   methods: {
     save () {
       this._getData();
-      debugger
       const { data } = this;
       const values = Object.values(data);
       const emptyValues = values.filter(v => !v);
@@ -63,7 +62,6 @@ export default {
     },
     _getData () {
       const { data, database } = this;
-      console.log('database: ', database)
       database.forEach((item) => {
         var obj = {};
         data[item.name] = item.model;
@@ -71,19 +69,34 @@ export default {
     },
     _sendData (data) {
       axios({
+        method: "post",
         url: '/question/experience/save',
-        data: data,
-        success: this._successHandler,
-        error: this._errHandler
+        data: data
       })
+      .then(this._successHandler)
+      .catch(this._errHandler);
     },
     _successHandler (resp) {
-			util.redirectToNextPage(this);
+      if (resp.data.code == 0) {
+        util.redirectToNextPage(this);
+      }
     },
     _errHandler (err) {
 
     }
   },
+	mounted () {
+    const vm = this;
+    console.info(vm.GLOBAL)
+		vm.database.forEach(function(item) {
+      if (item.name == 'name') {
+        item.model = vm.GLOBAL.data['trainName'];
+      }
+      if (item.name == 'time') {
+        item.model = vm.GLOBAL.data['startTime'];
+      }
+		});
+	}
 };
 </script>
 <style>

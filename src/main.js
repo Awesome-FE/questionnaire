@@ -23,6 +23,7 @@ axios.defaults['transformRequest'] = [function(data) {
 
 Vue.config.productionTip = false;
 
+Vue.prototype.GLOBAL = {};
 
 new Vue({
     el: '#app',

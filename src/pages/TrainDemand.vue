@@ -71,7 +71,7 @@ export default {
         this.showPositionValue = true;
         return;
       }
-      // this._sendData(data);
+      this._sendData(data);
     },
     _getData () {
       const { data, database } = this;
@@ -85,14 +85,18 @@ export default {
     },
     _sendData (data) {
       axios({
+        method: "post",
         url: '/question/research/save',
-        data: data,
-        success: this._successHandler,
-        error: this._errHandler
+        data: data
       })
+      .then(this._successHandler)
+      .catch(this._errHandler)
+
     },
     _successHandler (resp) {
-			util.redirectToNextPage(this);
+      if (resp.data.code == 0) {
+        util.redirectToNextPage(this);
+      }
     },
     _errHandler (err) {
 

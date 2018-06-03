@@ -21,11 +21,10 @@ const webpackConfig = merge(common, {
         })
     ],
     devServer: {
+	disableHostCheck: true,
         proxy: {
             "/api": {
-                target: "http://119.23.217.88:8080",
-                target: "http://www.actionview.cn:8080",
-                // target: "192.168.0.110:7777",
+		target: "http://119.23.217.88:8080",
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''
