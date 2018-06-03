@@ -56,8 +56,6 @@ export default {
 			showPositionValue: false,
       data: {
 				advise: '',  //改进意见
-				activity: 'xxxx',  //活动id
-				activityName: 'yyyyy',  //活动名称
 			},
 			database: [
 				{ 
@@ -144,11 +142,12 @@ export default {
 			});
 		},
     _sendData (data) {
-      axios({
-				method: 'post',
-        url: '/question/research/save',
-        data: data,
-			})
+			axios.get('/question/assessment/save', {params: data})
+      // axios({
+			// 	method: 'get',
+      //   url: '/question/assessment/save',
+      //   data: data,
+			// })
 			.then(this._successHandler)
 			.catch(this._errHandler)
     },
@@ -161,12 +160,14 @@ export default {
   },
 	mounted () {
 		const vm = this;
+		vm.data.activity = vm.GLOBAL.data.id; //活动id
+		vm.data.activityName = vm.GLOBAL.data.trainName; //活动名称
+
 		vm.database[0]['data'].forEach(function(item) {
 			item.model = vm.GLOBAL.data[item.name] || '';
 		});
-		console.log(vm.GLOBAL.data)
 
-		axios.get('/question/activity/find' + '?id=18')
+		axios.get('/question/activity/find?id=' + vm.data.activity)
 		.then(function (resp) {
 			const database = vm.database
 			const teachers = resp.data.TeacherDO;
