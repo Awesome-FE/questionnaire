@@ -24,7 +24,8 @@ const webpackConfig = merge(common, {
 	disableHostCheck: true,
         proxy: {
             "/api": {
-		target: "http://119.23.217.88:8080",
+                // target: "http://119.23.217.88:8080",
+                target: "http://192.168.0.113:80",
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''

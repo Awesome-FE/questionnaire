@@ -33,28 +33,44 @@ export default {
       data: {},
       database: {
         userInfo: [
-          { model: '', title: "姓名：",  name: "name" },
-          { model: '', title: "年龄：",  name: "age", mask: "99" },
-          { model: '', title: "班组：",  name: "team" },
-          { model: '', title: "岗位：",  name: "post" },
-          { model: '', title: "学历：",  name: "education" },
-          { model: '', title: "职称：",  name: "title" },
-          { model: '', title: "所在部门：",  name: "department" },
-          { model: '', title: "技能等级：",  name: "grade" },
-          { model: '', title: "从事本岗位的年度：",  name: "year" },
+          { model: "", title: "姓名：", name: "name" },
+          { model: "", title: "年龄：", name: "age", mask: "99" },
+          { model: "", title: "班组：", name: "team" },
+          { model: "", title: "岗位：", name: "post" },
+          { model: "", title: "学历：", name: "education" },
+          { model: "", title: "职称：", name: "title" },
+          { model: "", title: "所在部门：", name: "department" },
+          { model: "", title: "技能等级：", name: "grade" },
+          { model: "", title: "从事本岗位的年度：", name: "year" }
         ],
         textArea: [
-          { model: '', title: "1.您迫切需要哪方面的培训？", name: "trainPersonalDirection" },
-          { model: '', title: "2.您所在团队(单位,班组)最需要哪方面的培训？", name: "trainDepartmentDirection" },
-          { model: '', title: "3.您期望的培训方式？", name: "trainMode" },
-          { model: '', title: "4.您对培训师的要求：", name: "trainTeacherRequirement" },
-          { model: '', title: "5.您对公司培训工作有哪些建议和希望？", name: "advise" },
+          {
+            model: "",
+            title: "1.您迫切需要哪方面的培训？",
+            name: "trainPersonalDirection"
+          },
+          {
+            model: "",
+            title: "2.您所在团队(单位,班组)最需要哪方面的培训？",
+            name: "trainDepartmentDirection"
+          },
+          { model: "", title: "3.您期望的培训方式？", name: "trainMode" },
+          {
+            model: "",
+            title: "4.您对培训师的要求：",
+            name: "trainTeacherRequirement"
+          },
+          {
+            model: "",
+            title: "5.您对公司培训工作有哪些建议和希望？",
+            name: "advise"
+          }
         ]
       }
-		}
+    };
   },
   components: {
-		Group,
+    Group,
     XButton,
     Toast,
     XInput,
@@ -62,8 +78,8 @@ export default {
     XHeader
   },
   methods: {
-    save () {
-      this._getData()
+    save() {
+      this._getData();
       const { data } = this;
       const values = Object.values(data);
       const emptyValues = values.filter(v => !v);
@@ -73,7 +89,7 @@ export default {
       }
       this._sendData(data);
     },
-    _getData () {
+    _getData() {
       const { data, database } = this;
       database.userInfo.forEach(item => {
         data[item.name] = item.model;
@@ -81,32 +97,29 @@ export default {
       database.textArea.forEach(item => {
         data[item.name] = item.model;
       });
-      console.log(data)
+      console.log(data);
     },
-    _sendData (data) {
+    _sendData(data) {
       axios({
         method: "post",
-        url: '/question/research/save',
+        url: "/question/research/save",
         data: data
       })
-      .then(this._successHandler)
-      .catch(this._errHandler)
-
+        .then(this._successHandler)
+        .catch(this._errHandler);
     },
-    _successHandler (resp) {
+    _successHandler(resp) {
       if (resp.data.code == 0) {
         util.redirectToNextPage(this);
       }
     },
-    _errHandler (err) {
-
-    }
-  },
+    _errHandler(err) {}
+  }
 };
 </script>
 <style>
 .key-value-table .key {
-	width: 50%;
+  width: 50%;
 }
 .key-value-table input {
   height: 30px;

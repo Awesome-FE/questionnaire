@@ -20,36 +20,44 @@
 import axios from "axios";
 import util from "../js/util";
 
-import { XButton, Toast, Datetime, XInput, Group, XTextarea, XHeader  } from "vux";
+import {
+  XButton,
+  Toast,
+  Datetime,
+  XInput,
+  Group,
+  XTextarea,
+  XHeader
+} from "vux";
 export default {
   data() {
     return {
       placeholder: "随便说点什么吧...",
       showPositionValue: false,
       database: [
-        { model: '', name: 'name',  title: '名称', readonly: true },
-        { model: '', name: 'time',  title: '培训时间', readonly: true },
-        { model: '', name: 'personalname',  title: '个人名字' },
-        { model: '', name: 'personaldepartment',  title: '单位名称' },
-        { model: '', name: 'post',  title: '岗位' }
+        { model: "", name: "name", title: "名称", readonly: true },
+        { model: "", name: "time", title: "培训时间", readonly: true },
+        { model: "", name: "personalname", title: "个人名字" },
+        { model: "", name: "personaldepartment", title: "单位名称" },
+        { model: "", name: "post", title: "岗位" }
       ],
       data: {
-        learnexperience: ''
+        learnexperience: ""
       }
-		}
+    };
   },
   components: {
     Datetime,
-		Group,
+    Group,
     XButton,
     Toast,
     Datetime,
     XInput,
     XTextarea,
-    XHeader 
+    XHeader
   },
   methods: {
-    save () {
+    save() {
       this._getData();
       const { data } = this;
       const values = Object.values(data);
@@ -60,48 +68,46 @@ export default {
       }
       this._sendData(data);
     },
-    _getData () {
+    _getData() {
       const { data, database } = this;
-      database.forEach((item) => {
+      database.forEach(item => {
         var obj = {};
         data[item.name] = item.model;
       });
     },
-    _sendData (data) {
+    _sendData(data) {
       axios({
         method: "post",
-        url: '/question/experience/save',
+        url: "/question/experience/save",
         data: data
       })
-      .then(this._successHandler)
-      .catch(this._errHandler);
+        .then(this._successHandler)
+        .catch(this._errHandler);
     },
-    _successHandler (resp) {
+    _successHandler(resp) {
       if (resp.data.code == 0) {
         util.redirectToNextPage(this);
       }
     },
-    _errHandler (err) {
-
-    }
+    _errHandler(err) {}
   },
-	mounted () {
+  mounted() {
     const vm = this;
-    console.info(vm.GLOBAL)
-		vm.database.forEach(function(item) {
-      if (item.name == 'name') {
-        item.model = vm.GLOBAL.data['trainName'];
+    console.info(vm.GLOBAL);
+    vm.database.forEach(function(item) {
+      if (item.name == "name") {
+        item.model = vm.GLOBAL.data["trainName"];
       }
-      if (item.name == 'time') {
-        item.model = vm.GLOBAL.data['startTime'];
+      if (item.name == "time") {
+        item.model = vm.GLOBAL.data["startTime"];
       }
-		});
-	}
+    });
+  }
 };
 </script>
 <style>
 .key-value-table .key {
-	width: 50%;
+  width: 50%;
 }
 .key-value-table input {
   height: 30px;
