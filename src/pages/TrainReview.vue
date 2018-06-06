@@ -23,7 +23,6 @@ import util from "../js/util";
 import {
   XButton,
   Toast,
-  Datetime,
   XInput,
   Group,
   XTextarea,
@@ -47,11 +46,9 @@ export default {
     };
   },
   components: {
-    Datetime,
     Group,
     XButton,
     Toast,
-    Datetime,
     XInput,
     XTextarea,
     XHeader
