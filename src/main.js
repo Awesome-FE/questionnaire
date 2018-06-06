@@ -4,9 +4,6 @@ import axios from 'axios'
 import './assets/css/base.css'
 import router from './router/index.js'
 
-// 全局注册（在 `main .js` 文件中）
-Vue.component('icon', Icon)
-
 axios.defaults.baseURL = '/api';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults['transformRequest'] = [function(data) {
