@@ -73,6 +73,9 @@ const config = {
   }
 };
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+config.plugins.push(new BundleAnalyzerPlugin({ analyzerHost: '0.0.0.0' }));
 
 module.exports = vuxLoader.merge(config, {
 	  options: {},
