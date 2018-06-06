@@ -3,11 +3,7 @@ const merge = require("webpack-merge");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const common = require("./webpack.common.js");
 
-const vuxLoader = require('vux-loader')
-
-
-
-const webpackConfig = merge(common, {
+module.exports = merge(common, {
     devtool: "inline-source-map",
     output: {
         publicPath: '/dist/',
@@ -35,9 +31,3 @@ const webpackConfig = merge(common, {
     }
 });
 
-module.exports = vuxLoader.merge(webpackConfig, {
-    options: {},
-    plugins: [{
-        name: 'vux-ui'
-    }]
-})
