@@ -3,9 +3,6 @@ import App from './App.vue'
 import axios from 'axios'
 import './assets/css/base.css'
 import router from './router/index.js'
-import 'vue-awesome/icons'
-
-import Icon from 'vue-awesome/components/Icon'
 
 // 全局注册（在 `main .js` 文件中）
 Vue.component('icon', Icon)

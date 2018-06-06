@@ -7,7 +7,8 @@
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --host 0.0.0.0 --content-base ./ --open --inline --hot --compress --config webpack.dev.js",
-    "build": "webpack --progress --hide-modules --config webpack.prod.js"
+    "build": "webpack --progress --hide-modules --config webpack.prod.js",
+    "analyze": "NODE_ENV=production npm_config_report=true npm run build"
   },
   "dependencies": {
     "axios": "^0.17.1",
@@ -49,6 +50,7 @@
     "vux": "2.8.1",
     "vux-loader": "^1.2.8",
     "webpack": "^3.6.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.2"
   }
