@@ -4,7 +4,7 @@ import axios from 'axios'
 import './assets/css/base.css'
 import router from './router/index.js'
 
-axios.defaults.baseURL = '/api';
+axios.defaults.baseURL = '/question';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults['transformRequest'] = [function(data) {
     // Do whatever you want to transform the data

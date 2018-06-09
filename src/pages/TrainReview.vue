@@ -75,7 +75,7 @@ export default {
     _sendData(data) {
       axios({
         method: "post",
-        url: "/question/experience/save",
+        url: "/experience/save",
         data: data
       })
         .then(this._successHandler)

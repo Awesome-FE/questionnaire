@@ -180,7 +180,7 @@ export default {
 
       axios({
         method: "post",
-        url: "/question/assessment/save",
+        url: "/assessment/save",
         data: data
       })
         .then(this._successHandler)
@@ -201,7 +201,7 @@ export default {
     });
 
     axios
-      .get("/question/activity/find?id=" + vm.data.activity)
+      .get("/activity/find?id=" + vm.data.activity)
       .then(function(resp) {
         const database = vm.database;
         const teachers = resp.data.TeacherDO;

@@ -19,7 +19,7 @@ module.exports = merge(common, {
     devServer: {
 	disableHostCheck: true,
         proxy: {
-            "/api": {
+            "/question": {
                 // target: "http://119.23.217.88:8080",
                 target: "http://192.168.0.113:80",
                 changeOrigin: true,

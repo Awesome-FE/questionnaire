@@ -29,33 +29,51 @@
 		<p style="color: red;">* 请依次填写完整并提交。</p>
 	</div>
 
+    <div v-transfer-dom>
+      <x-dialog v-model="showDialogStyle" hide-on-blur :dialog-style="{'max-width': '100%', width: '100%', height: '50%', 'background-color': 'transparent'}">
+        <p style="color:#fff;text-align:center;" @click="showDialogStyle = false">
+          <span style="font-size:30px;">发生错误，请重试!</span>
+          <br>
+          <br>
+          <x-icon type="ios-close-outline" style="fill:#fff;"></x-icon>
+        </p>
+      </x-dialog>
+    </div>
+
 	<div :class="$style.copyright">&copy; 2018 河北电网</div>
   </div>
 </template>
 
 <script>
-import { XButton } from 'vux'
+import { XDialog, XButton } from 'vux'
 
 // import Vue from 'Vue'
 import axios from 'axios'
 export default {
   components: {
-    XButton 
+	XButton,
+	XDialog
   },
   data() {
     return {
 		link: '/train-opinion',
 		trainName: '',
 		undertakeDepartment: '',
-		startTime: ''
+		startTime: '',
+		showDialogStyle: false
     };
   },
+
 	mounted () {
 		const vm = this;
 		const query = this.$route.query;
 		vm.GLOBAL.query = query;
-		axios.get('/question/activity/findByToken?token=' + query.token)
+		axios.get('/activity/findByToken?token=' + query.token)
 		.then(function (resp) {
+			if (resp.code != 0) {
+				vm.showDialogStyle = true;
+			}
+
 			const data = resp.data.data;
 			data.startTime = data.startTime.replace(/\s.*$/, '');
 			
