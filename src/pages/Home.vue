@@ -70,8 +70,9 @@ export default {
 		vm.GLOBAL.query = query;
 		axios.get('/activity/findByToken?token=' + query.token)
 		.then(function (resp) {
-			if (resp.code != 0) {
+			if (resp.data.code != 0) {
 				vm.showDialogStyle = true;
+				return;
 			}
 
 			const data = resp.data.data;
